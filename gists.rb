@@ -1,7 +1,6 @@
 require 'octokit'
-#require 'json'
 require 'colorize'
-require "netrc"
+require 'netrc'
 
 client = Octokit::Client.new(:netrc => true)
 starred = client.starred_gists
@@ -15,12 +14,10 @@ starred.reverse_each do |item|
     puts "💾  => #{item[:files]._fields.first} | 👤  => #{item[:owner][:login]}".colorize(:light_green)
     print '┌'
     box_width.times{|x| print "─"}
-    print '┐'
-    print "\n"
+    print "┐\n"
     puts "│ #{description}"
     puts "│ #{url}"
     print '└'
     box_width.times{|x| print "─"}
-    print '┘'
-    puts "\r"
+    puts '┘'
 end
